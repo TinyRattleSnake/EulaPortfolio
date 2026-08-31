@@ -1,19 +1,19 @@
-import { About, Footer, Header, Skills, Testimonial, Work } from './container'
-import { Navbar } from './components'
-import "./App.scss"
+import { Navbar } from './components';
+import { About, Footer, Header, Skills, Work } from './container';
+import './App.scss';
 
-const App = () => {
-    return (
-        <div className='app'>
-            <Navbar />
-            <Header />
-            <About />
-            <Work />
-            <Skills />
-            <Testimonial />
-            <Footer />
-        </div>
-    )
-}
+const App = () => (
+  <div className="app">
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <Navbar />
+    <main id="main-content">
+      <Header />
+      <About />
+      <Work />
+      <Skills />
+    </main>
+    <Footer />
+  </div>
+);
 
-export default App
+export default App;

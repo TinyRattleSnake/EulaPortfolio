@@ -1,115 +1,76 @@
-import { useState, useEffect } from 'react';
-import { AiFillEye, AiFillGithub } from 'react-icons/ai';
+import { useMemo, useState } from 'react';
+import { HiArrowRight } from 'react-icons/hi';
 import { motion } from 'framer-motion';
-
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
+import { projects, type ProjectCategory } from '../../data/portfolio';
 import './Work.scss';
 
+type Filter = 'All' | ProjectCategory;
+
 const Work = () => {
-  const [works, setWorks] = useState([]);
-  const [filterWork, setFilterWork] = useState([]);
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
-
-  useEffect(() => {
-    const query = '*[_type == "works"]';
-
-    client.fetch(query).then((data) => {
-      setWorks(data);
-      setFilterWork(data);
-    });
-  }, []);
-
-  const handleWorkFilter = (item: string) => {
-    setActiveFilter(item);
-    setAnimateCard({ y: 100, opacity: 0 });
-
-    setTimeout(() => {
-      setAnimateCard({ y: 0, opacity: 1 });
-
-      if (item === 'All') {
-        setFilterWork(works);
-      } else {
-        setFilterWork(works.filter((work: any) => work.tags.includes(item)));
-      }
-    }, 500);
-  };
+  const [activeFilter, setActiveFilter] = useState<Filter>('All');
+  const filters: Filter[] = ['All', 'Frontend', 'CMS'];
+  const visibleProjects = useMemo(
+    () => activeFilter === 'All' ? projects : projects.filter((project) => project.category === activeFilter),
+    [activeFilter],
+  );
 
   return (
-    <>
-      <h2 className="head-text">My Creative <span>Portfolio</span> Section</h2>
+    <section id="work" className="section work" aria-labelledby="work-title">
+      <div className="section__intro section__intro--row">
+        <div>
+          <p className="section__kicker">Selected work</p>
+          <h2 id="work-title">Proof of <em>how I think.</em></h2>
+        </div>
+        <p className="section__aside">Honest case studies from this repository—what changed, why it changed and what I learned.</p>
+      </div>
 
-      <div className="app__work-filter">
-        {['UI/UX', 'Web App', 'Mobile App', 'React JS', 'All'].map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleWorkFilter(item)}
-            className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
+      <div className="work__filters" aria-label="Filter projects">
+        {filters.map((filter) => (
+          <button
+            key={filter}
+            type="button"
+            aria-pressed={activeFilter === filter}
+            onClick={() => setActiveFilter(filter)}
           >
-            {item}
-          </div>
+            {filter}
+          </button>
         ))}
       </div>
 
-      <motion.div
-        animate={animateCard}
-        transition={{ duration: 0.5, delayChildren: 0.5 }}
-        className="app__work-portfolio"
-      >
-        {filterWork.map((work: any, index) => (
-          <div className="app__work-item app__flex" key={index}>
-            <div
-              className="app__work-img app__flex"
-            >
-              <img src={urlFor(work.imgUrl).url()} alt={work.name} />
-
-              <motion.div
-                whileHover={{ opacity: [0, 1] }}
-                transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
-                className="app__work-hover app__flex"
-              >
-                <a href={work.projectLink} target="_blank" rel="noreferrer">
-
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.90] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
-                  >
-                    <AiFillEye />
-                  </motion.div>
-                </a>
-                <a href={work.codeLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.90] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
-                  >
-                    <AiFillGithub />
-                  </motion.div>
-                </a>
-              </motion.div>
+      <div className="work__list" aria-live="polite">
+        {visibleProjects.map((project, index) => (
+          <motion.article
+            className="project"
+            key={project.title}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.18 }}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
+          >
+            <div className="project__visual" aria-hidden="true">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{project.category}</strong>
+              <div>{project.tags.slice(0, 3).map((tag) => <i key={tag}>{tag}</i>)}</div>
             </div>
 
-            <div className="app__work-content app__flex">
-              <h4 className="bold-text">{work.title}</h4>
-              <p className="p-text" style={{ marginTop: 10 }}>{work.description}</p>
-
-              <div className="app__work-tag app__flex">
-                <p className="p-text">{work.tags[0]}</p>
-              </div>
+            <div className="project__content">
+              <div className="project__meta"><span>{project.eyebrow}</span><span>{project.year}</span></div>
+              <h3>{project.title}</h3>
+              <p className="project__summary">{project.summary}</p>
+              <dl>
+                <div><dt>Challenge</dt><dd>{project.challenge}</dd></div>
+                <div><dt>Approach</dt><dd>{project.solution}</dd></div>
+              </dl>
+              <ul aria-label="Technologies">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
+              <a href={project.href} target="_blank" rel="noreferrer">
+                View GitHub profile <HiArrowRight aria-hidden="true" />
+              </a>
             </div>
-          </div>
+          </motion.article>
         ))}
-      </motion.div>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default AppWrap(
-  MotionWrap(Work, "app__works"),
-  "work",
-  "app__primarybg"
-);
+export default Work;

@@ -1,50 +1,77 @@
-import { useState } from 'react';
-import { HiMenuAlt4, HiX } from 'react-icons/hi';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { HiArrowRight, HiMenuAlt4, HiX } from 'react-icons/hi';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { images } from '../../constants';
 import './Navbar.scss';
 
 const Navbar = () => {
-    const [toggle, setToggle] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const links = ['about', 'work', 'skills', 'contact'];
 
-    return (
-        <nav className="app__navbar">
-            <div className="app__navbar-logo">
-                <img src={images.logo} alt="logo" />
-            </div>
-            <ul className="app__navbar-links">
-                {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
-                    <li className="app__flex p-text" key={`link-${item}`}>
-                        <div />
-                        <a href={`#${item}`}>{item}</a>
-                    </li>
+  useEffect(() => {
+    const closeMenu = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+
+    window.addEventListener('keydown', closeMenu);
+    return () => window.removeEventListener('keydown', closeMenu);
+  }, []);
+
+  return (
+    <nav className="app__navbar" aria-label="Primary navigation">
+      <a className="app__navbar-logo" href="#home" aria-label="Shudong Wang, home">
+        <img src={images.logo} alt="Shudong Wang" />
+      </a>
+
+      <ul className="app__navbar-links">
+        {links.map((item) => (
+          <li key={item}>
+            <a href={`#${item}`}>{item}</a>
+          </li>
+        ))}
+      </ul>
+
+      <a className="app__navbar-cta" href="mailto:onlyonewsd@icloud.com">
+        Let&apos;s talk <HiArrowRight aria-hidden="true" />
+      </a>
+
+      <div className="app__navbar-menu">
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open navigation menu"
+          aria-expanded={isOpen}
+        >
+          <HiMenuAlt4 aria-hidden="true" />
+        </button>
+
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            >
+              <button type="button" onClick={() => setIsOpen(false)} aria-label="Close navigation menu">
+                <HiX aria-hidden="true" />
+              </button>
+              <ul>
+                {['home', ...links].map((item) => (
+                  <li key={item}>
+                    <a href={`#${item}`} onClick={() => setIsOpen(false)}>
+                      {item}
+                    </a>
+                  </li>
                 ))}
-            </ul>
-
-            <div className="app__navbar-menu">
-                <HiMenuAlt4 onClick={() => setToggle(true)} />
-
-                {toggle && (
-                    <motion.div
-                        whileInView={{ x: [300, 0] }}
-                        transition={{ duration: 0.85, ease: 'easeOut' }}
-                    >
-                        <HiX onClick={() => setToggle(false)} />
-                        <ul>
-                            {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
-                                <li key={item}>
-                                    <a href={`#${item}`} onClick={() => setToggle(false)}>
-                                        {item}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </motion.div>
-                )}
-            </div>
-        </nav>
-    );
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

@@ -1,46 +1,49 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import { HiArrowDown } from 'react-icons/hi';
+import './About.scss';
 
-import { AppWrap, MotionWrap } from '../../wrapper'
-import { urlFor, client } from '../../client'
-import "./About.scss"
+const principles = [
+  ['01', 'Clear before clever', 'Interfaces should explain themselves. I start with hierarchy, semantics and the user’s next action.'],
+  ['02', 'Responsive by default', 'Layouts, touch targets and content are considered across phones, tablets and desktops from the start.'],
+  ['03', 'Built to maintain', 'Strong types, small components and documented decisions make future changes safer and faster.'],
+] as const;
 
-const About = () => {
-  const [abouts, setAbouts] = useState([]);
+const About = () => (
+  <section id="about" className="section about" aria-labelledby="about-title">
+    <div className="section__intro">
+      <p className="section__kicker">About</p>
+      <h2 id="about-title">I turn learning into <em>working software.</em></h2>
+    </div>
 
-  useEffect(() => {
-    const query = '*[_type == "abouts"]';
-
-    client.fetch(query)
-      .then((data) => setAbouts(data))
-  }, []);
-
-  return (
-    <>
-      <h2 className='head-text'>I Know That <span>Good Apps</span> <br /> means <span>Good Business</span></h2>
-      <div className='app__profiles'>
-        {abouts.map((about: any, index) => {
-          return (
-            <motion.div
-              whileInView={{ opacity: 1 }}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.5, type: 'tween' }}
-              className='app__profile-item'
-              key={about.title + index}
-            >
-              <img src={urlFor(about.imgUrl).url()} alt={about.title} />
-              <h2 className='bold-text' style={{ marginTop: 20 }} >{about.title}</h2>
-              <p className='p-text' style={{ marginTop: 10 }} >{about.description}</p>
-            </motion.div>
-          )
-        })}
+    <div className="about__body">
+      <div className="about__statement">
+        <p>
+          I&apos;m a frontend-focused developer based in Australia. My strength is taking an idea,
+          breaking it into understandable pieces and steadily turning it into a polished web experience.
+        </p>
+        <p>
+          This portfolio is part of that process: I revisited an early tutorial project, audited the
+          weaknesses and rebuilt it with stronger security, accessibility and engineering practices.
+        </p>
+        <a href="#work">See the rebuild <HiArrowDown aria-hidden="true" /></a>
       </div>
-    </>
-  )
-}
 
-export default AppWrap(
-  MotionWrap(About, "app__about"),
-  "about",
-  "app__whitebg"
+      <div className="about__principles">
+        {principles.map(([number, title, text], index) => (
+          <motion.article
+            key={title}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.45, delay: index * 0.06 }}
+          >
+            <span>{number}</span>
+            <div><h3>{title}</h3><p>{text}</p></div>
+          </motion.article>
+        ))}
+      </div>
+    </div>
+  </section>
 );
+
+export default About;

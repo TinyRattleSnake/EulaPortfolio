@@ -1,5 +1,12 @@
 {
-  "dependencies": {
-    "sass": "^1.72.0"
+  "name": "eula-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix frontend_react run dev",
+    "build": "npm --prefix frontend_react run build",
+    "typecheck": "npm --prefix frontend_react run typecheck",
+    "lint": "npm --prefix frontend_react run lint",
+    "test": "npm --prefix frontend_react run test"
   }
 }

@@ -1,70 +1,52 @@
+import { HiArrowDown, HiArrowRight } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
-import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
 import './Header.scss';
 
-const scaleVariants = {
-  whileInView: {
-    scale: [0, 1],
-    opacity: [0, 1],
-    transition: {
-      duration: 1,
-      ease: 'easeInOut',
-    },
-  },
-};
-
 const Header = () => (
-  <div className="app__header app__flex">
+  <header id="home" className="hero">
     <motion.div
-      whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-      transition={{ duration: 0.5 }}
-      className="app__header-info"
+      className="hero__copy"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="app__header-badge">
-        <div className="badge-cmp app__flex">
-          <span>👋</span>
-          <div style={{ marginLeft: 20 }}>
-            <p className="p-text">Hello, I am</p>
-            <h1 className="head-text">Shudong</h1>
-          </div>
-        </div>
-
-        <div className="tag-cmp app__flex">
-          <p className="p-text">Web Developer</p>
-          <p className="p-text">Freelancer</p>
-        </div>
+      <p className="hero__eyebrow"><span /> Open to opportunities in Australia</p>
+      <h1>
+        Frontend developer.<br />
+        <em>Thoughtful</em> interfaces.<br />
+        Reliable code.
+      </h1>
+      <p className="hero__intro">
+        I&apos;m Shudong Wang, a React and TypeScript developer focused on accessible,
+        responsive web experiences that feel clear and purposeful.
+      </p>
+      <div className="hero__actions">
+        <a className="button button--primary" href="#work">
+          View selected work <HiArrowDown aria-hidden="true" />
+        </a>
+        <a className="button button--text" href="mailto:onlyonewsd@icloud.com">
+          Email me <HiArrowRight aria-hidden="true" />
+        </a>
       </div>
     </motion.div>
 
     <motion.div
-      whileInView={{ opacity: [0, 1] }}
-      transition={{ duration: 0.5, delayChildren: 0.5 }}
-      className="app__header-img"
+      className="hero__portrait"
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
     >
-      <img src={images.profile} alt="profile_bg" />
-      <motion.img
-        whileInView={{ scale: [0, 1] }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-        src={images.circle}
-        alt="profile_circle"
-        className="overlay_circle"
-      />
+      <div className="hero__image-frame">
+        <img src={images.profile} alt="Shudong Wang" />
+      </div>
+      <div className="hero__stack" aria-label="Core technologies">
+        <span>React</span><span>TypeScript</span><span>Vite</span>
+      </div>
+      <p className="hero__caption">Based in Australia · Available for frontend and full-stack roles</p>
     </motion.div>
-
-    <motion.div
-      variants={scaleVariants}
-      whileInView={scaleVariants.whileInView}
-      className="app__header-circles"
-    >
-      {[images.flutter, images.redux, images.sass].map((circle, index) => (
-        <div className="circle-cmp app__flex" key={`circle-${index}`}>
-          <img src={circle} alt="profile_bg" />
-        </div>
-      ))}
-    </motion.div>
-  </div>
+  </header>
 );
 
-export default AppWrap(Header, 'home');
+export default Header;

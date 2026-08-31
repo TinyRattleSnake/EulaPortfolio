@@ -1,95 +1,43 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { skillGroups, timeline } from '../../data/portfolio';
+import './Skills.scss';
 
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
-import "./Skills.scss"
-
-const Skills = () => {
-  const [experiences, setExperiences] = useState([]);
-  const [skills, setSkills] = useState([]);
-
-  useEffect(() => {
-    const query = '*[_type == "experiences"]';
-    const skillsQuery = '*[_type == "skills"]';
-
-    client.fetch(query).then((data) => {
-      setExperiences(data);
-    });
-
-    client.fetch(skillsQuery).then((data) => {
-      setSkills(data);
-    });
-  }, []);
-
-  return (
-    <>
-      <h2 className="head-text">Skills & Experiences</h2>
-
-      <div className="app__skills-container">
-        <motion.div className="app__skills-list">
-          {skills.map((skill: any) => (
-            <motion.div
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ duration: 0.5 }}
-              className="app__skills-item app__flex"
-              key={skill.name}
-            >
-              <div
-                className="app__flex"
-                style={{ backgroundColor: skill.bgColor }}
-              >
-                <img src={urlFor(skill.icon).url()} alt={skill.name} />
-              </div>
-              <p className="p-text">{skill.name}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-        <div className="app__skills-exp">
-          {experiences.map((experience: any) => (
-            <motion.div
-              className="app__skills-exp-item"
-              key={experience.year}
-            >
-              <div className="app__skills-exp-year">
-                <p className="bold-text">{experience.year}</p>
-              </div>
-              <motion.div className="app__skills-exp-works">
-                {experience.works.map((work: any, index: number) => (
-                  <div key = {index}>
-                    <motion.div
-                      whileInView={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.5 }}
-                      className="app__skills-exp-work"
-                      data-tip
-                      data-for={work.name}
-                      key={work.name}
-                    >
-                      <h4 className="bold-text">{work.name}</h4>
-                      <p className="p-text">{work.company}</p>
-                    </motion.div>
-                    <ReactTooltip
-                      id={work.name}
-                      // effect="solid"
-                      arrowColor="#fff"
-                      className="skills-tooltip"
-                    >
-                      {work.desc}
-                    </ReactTooltip>
-                  </div>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
+const Skills = () => (
+  <section id="skills" className="section skills" aria-labelledby="skills-title">
+    <div className="section__intro section__intro--row">
+      <div>
+        <p className="section__kicker">Skills & growth</p>
+        <h2 id="skills-title">A practical toolkit,<br /><em>always improving.</em></h2>
       </div>
-    </>
-  );
-}
+      <p className="section__aside">I’m strongest in frontend fundamentals and honest about the areas I’m actively developing.</p>
+    </div>
 
-export default AppWrap(
-  MotionWrap(Skills, "app__skills"),
-  "skills",
-  "app__whitebg"
+    <div className="skills__grid">
+      <div className="skills__groups">
+        {skillGroups.map((group, index) => (
+          <motion.article
+            key={group.title}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.4, delay: index * 0.06 }}
+          >
+            <h3>{group.title}</h3>
+            <ul>{group.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul>
+          </motion.article>
+        ))}
+      </div>
+
+      <div className="skills__timeline" aria-label="Learning timeline">
+        {timeline.map((item) => (
+          <article key={item.period}>
+            <span>{item.period}</span>
+            <div><h3>{item.title}</h3><p>{item.detail}</p></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 );
+
+export default Skills;
