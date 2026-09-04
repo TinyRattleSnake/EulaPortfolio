@@ -20,8 +20,8 @@ const Navbar = () => {
 
   return (
     <nav className="app__navbar" aria-label="Primary navigation">
-      <a className="app__navbar-logo" href="#home" aria-label="Shudong Wang, home">
-        <img src={images.logo} alt="Shudong Wang" />
+      <a className="app__navbar-logo" href="#home" aria-label="Harry Wang, home">
+        <img src={images.logo} alt="Harry Wang" />
       </a>
 
       <ul className="app__navbar-links">

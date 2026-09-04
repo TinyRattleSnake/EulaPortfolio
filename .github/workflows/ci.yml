@@ -32,7 +32,7 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run test
-      - run: npm run build -- --base=/EulaPortfolio/
+      - run: npm run build -- --base=/HarryWang/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend_react/dist

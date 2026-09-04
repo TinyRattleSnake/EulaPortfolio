@@ -1,4 +1,4 @@
-# Shudong Wang — Frontend Developer Portfolio
+# Harry Wang — Frontend Developer Portfolio
 
 A responsive portfolio rebuilt from an early React learning project into a secure, typed and accessible site for the Australian job market.
 

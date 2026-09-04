@@ -1,6 +1,6 @@
 # Portfolio frontend
 
-The production-facing React application for Shudong Wang's developer portfolio.
+The production-facing React application for Harry Wang's developer portfolio.
 
 From this directory:
 

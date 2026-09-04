@@ -7,6 +7,7 @@ describe('portfolio', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: /frontend developer/i, level: 1 })).toBeInTheDocument();
+    expect(screen.getByText(/i'm harry wang/i)).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: /primary navigation/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /view selected work/i })).toHaveAttribute('href', '#work');
   });

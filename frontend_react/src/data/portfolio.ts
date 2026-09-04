@@ -22,7 +22,7 @@ export const projects: Project[] = [
     challenge: 'The original site relied on remote CMS data, exposed a browser token and showed empty sections when requests failed.',
     solution: 'Reframed the content around recruiter needs, moved essential data local, added semantic controls and introduced repeatable quality checks.',
     tags: ['React', 'TypeScript', 'Vite', 'Accessibility'],
-    href: 'https://github.com/TinyRattleSnake',
+    href: 'https://github.com/TinyRattleSnake/HarryWang',
   },
   {
     title: 'Sanity Content Studio',
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     challenge: 'Portfolio content needed to be editable without changing component code every time.',
     solution: 'Designed reusable Sanity schemas and connected typed React views while learning where a CMS adds value—and where it adds unnecessary complexity.',
     tags: ['Sanity', 'GROQ', 'Schema design', 'React'],
-    href: 'https://github.com/TinyRattleSnake',
+    href: 'https://github.com/TinyRattleSnake/HarryWang/tree/main/backend_sanity',
   },
 ];
 

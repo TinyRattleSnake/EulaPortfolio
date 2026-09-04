@@ -13,11 +13,11 @@ const Footer = () => (
     </div>
 
     <div className="footer__bottom">
-      <p>Shudong Wang · Frontend Developer · Australia</p>
+      <p>Harry Wang · Frontend Developer · Australia</p>
       <a href="https://github.com/TinyRattleSnake" target="_blank" rel="noreferrer">
         <AiFillGithub aria-hidden="true" /> GitHub <span className="sr-only">(opens in a new tab)</span>
       </a>
-      <p>© {new Date().getFullYear()} Shudong Wang</p>
+      <p>© {new Date().getFullYear()} Harry Wang</p>
     </div>
   </footer>
 );

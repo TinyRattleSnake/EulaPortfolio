@@ -19,7 +19,7 @@ const Header = () => (
         Reliable code.
       </h1>
       <p className="hero__intro">
-        I&apos;m Shudong Wang, a React and TypeScript developer focused on accessible,
+        I&apos;m Harry Wang, a React and TypeScript developer focused on accessible,
         responsive web experiences that feel clear and purposeful.
       </p>
       <div className="hero__actions">
@@ -39,7 +39,7 @@ const Header = () => (
       transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
     >
       <div className="hero__image-frame">
-        <img src={images.profile} alt="Shudong Wang" />
+        <img src={images.profile} alt="Harry Wang" />
       </div>
       <div className="hero__stack" aria-label="Core technologies">
         <span>React</span><span>TypeScript</span><span>Vite</span>
