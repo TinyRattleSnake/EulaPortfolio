@@ -9,7 +9,7 @@ const Skills = () => (
         <p className="section__kicker">Skills & growth</p>
         <h2 id="skills-title">A practical toolkit,<br /><em>always improving.</em></h2>
       </div>
-      <p className="section__aside">I’m strongest in frontend fundamentals and honest about the areas I’m actively developing.</p>
+      <p className="section__aside">My toolkit combines frontend fundamentals, practical engineering workflows and modern web technologies.</p>
     </div>
 
     <div className="skills__grid">
@@ -28,7 +28,7 @@ const Skills = () => (
         ))}
       </div>
 
-      <div className="skills__timeline" aria-label="Learning timeline">
+      <div className="skills__timeline" aria-label="Development timeline">
         {timeline.map((item) => (
           <article key={item.period}>
             <span>{item.period}</span>

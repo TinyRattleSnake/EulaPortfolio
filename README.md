@@ -1,15 +1,15 @@
 # Harry Wang — Frontend Developer Portfolio
 
-A responsive portfolio rebuilt from an early React learning project into a secure, typed and accessible site for the Australian job market.
+A personal portfolio presenting my frontend development work, technical skills and contact information. The site is designed for the Australian job market with a focus on responsive layouts, accessibility and maintainable code.
 
-## What changed
+## Highlights
 
-- Replaced tutorial placeholder copy with an honest, recruiter-focused narrative.
-- Removed the browser-side Sanity write token and the tracked `.env` file.
-- Replaced remote-only portfolio data with typed local content so the core site never renders empty.
-- Added semantic navigation, keyboard-friendly filters, reduced-motion support and visible focus states.
-- Added component tests and a CI workflow for linting, type checking, tests and production builds.
-- Updated the frontend to React 19, Vite 8 and TypeScript 5.9.
+- Responsive layout for mobile, tablet and desktop screens
+- Semantic navigation and accessible interactive controls
+- Typed project and skills data
+- Subtle interface animations with reduced-motion support
+- Automated linting, type checking, tests and production builds
+- Continuous deployment with GitHub Actions and GitHub Pages
 
 ## Stack
 
@@ -19,7 +19,7 @@ A responsive portfolio rebuilt from an early React learning project into a secur
 - Framer Motion
 - Vitest and Testing Library
 
-The original Sanity Studio prototype remains in `backend_sanity` as a record of the first CMS implementation, but the public portfolio no longer depends on it to render.
+The repository also includes a Sanity Studio workspace for structured portfolio content management.
 
 ## Run locally
 
@@ -42,8 +42,8 @@ npm run build
 
 ## Updating the content
 
-Portfolio projects, skill groups and the learning timeline are typed in `frontend_react/src/data/portfolio.ts`. Personal links and contact details are in the header, navigation and footer components.
+Portfolio projects, skill groups and the development timeline are defined in `frontend_react/src/data/portfolio.ts`. Personal links and contact details are located in the header, navigation and footer components.
 
 ## Security
 
-No CMS write token is shipped to the browser. Keep local secrets in ignored `.env` files and never commit them. The previously exposed Sanity token should be revoked in the Sanity dashboard before this repository is made public.
+Environment variables and local configuration files are excluded from version control. Sensitive credentials should never be included in client-side code.

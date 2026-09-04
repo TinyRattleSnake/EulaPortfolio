@@ -14,24 +14,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'Portfolio Refresh',
-    eyebrow: 'Personal product · Frontend',
+    title: 'Developer Portfolio',
+    eyebrow: 'Personal project · Frontend',
     year: '2026',
     category: 'Frontend',
-    summary: 'A tutorial-based portfolio rebuilt into a secure, typed and accessible product for the Australian job market.',
-    challenge: 'The original site relied on remote CMS data, exposed a browser token and showed empty sections when requests failed.',
-    solution: 'Reframed the content around recruiter needs, moved essential data local, added semantic controls and introduced repeatable quality checks.',
+    summary: 'A responsive personal portfolio designed to present projects, technical skills and professional information clearly.',
+    challenge: 'Present varied information in a focused experience that works well across devices and remains easy to maintain.',
+    solution: 'Built a typed component system with responsive layouts, accessible controls, project filtering and automated quality checks.',
     tags: ['React', 'TypeScript', 'Vite', 'Accessibility'],
     href: 'https://github.com/TinyRattleSnake/HarryWang',
   },
   {
-    title: 'Sanity Content Studio',
-    eyebrow: 'CMS prototype · Content modelling',
+    title: 'Portfolio Content Studio',
+    eyebrow: 'Content platform · CMS',
     year: '2024',
     category: 'CMS',
-    summary: 'A structured content workspace for portfolio projects, skills, experience, testimonials and contact enquiries.',
+    summary: 'A structured content workspace for managing portfolio projects, skills, experience and contact information.',
     challenge: 'Portfolio content needed to be editable without changing component code every time.',
-    solution: 'Designed reusable Sanity schemas and connected typed React views while learning where a CMS adds value—and where it adds unnecessary complexity.',
+    solution: 'Designed reusable Sanity schemas and connected them to React views through GROQ queries and a consistent content model.',
     tags: ['Sanity', 'GROQ', 'Schema design', 'React'],
     href: 'https://github.com/TinyRattleSnake/HarryWang/tree/main/backend_sanity',
   },
@@ -47,7 +47,7 @@ export const skillGroups = [
     skills: ['Git & GitHub', 'Responsive UI', 'Accessibility', 'REST APIs', 'Component testing', 'CI-ready workflows'],
   },
   {
-    title: 'Exploring',
+    title: 'Additional tools',
     skills: ['Node.js', 'Sanity CMS', 'GraphQL', 'Cloud deployment', 'Performance optimisation'],
   },
 ] as const;
@@ -60,12 +60,12 @@ export const timeline = [
   },
   {
     period: '2024',
-    title: 'First React + Sanity portfolio',
-    detail: 'Built a responsive portfolio from a long-form course, then extended it with TypeScript and custom content.',
+    title: 'React + Sanity content platform',
+    detail: 'Developed a responsive React interface supported by structured content models and reusable components.',
   },
   {
     period: 'Foundation',
     title: 'Web development fundamentals',
-    detail: 'JavaScript, semantic HTML, CSS, Git and the habit of learning by shipping complete projects.',
+    detail: 'Built a strong foundation in JavaScript, semantic HTML, CSS, Git and modern web development practices.',
   },
 ] as const;

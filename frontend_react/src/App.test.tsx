@@ -19,7 +19,7 @@ describe('portfolio', () => {
     fireEvent.click(cmsFilter);
 
     expect(cmsFilter).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('heading', { name: 'Sanity Content Studio' })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Portfolio Refresh' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Portfolio Content Studio' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Developer Portfolio' })).not.toBeInTheDocument();
   });
 });

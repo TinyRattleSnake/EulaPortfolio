@@ -21,7 +21,7 @@ const Work = () => {
           <p className="section__kicker">Selected work</p>
           <h2 id="work-title">Proof of <em>how I think.</em></h2>
         </div>
-        <p className="section__aside">Honest case studies from this repository—what changed, why it changed and what I learned.</p>
+        <p className="section__aside">A selection of frontend and content platform work, including the goals, approach and technologies behind each project.</p>
       </div>
 
       <div className="work__filters" aria-label="Filter projects">
@@ -63,7 +63,7 @@ const Work = () => {
               </dl>
               <ul aria-label="Technologies">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
               <a href={project.href} target="_blank" rel="noreferrer">
-                View GitHub profile <HiArrowRight aria-hidden="true" />
+                View project on GitHub <HiArrowRight aria-hidden="true" />
               </a>
             </div>
           </motion.article>

@@ -12,7 +12,7 @@ const About = () => (
   <section id="about" className="section about" aria-labelledby="about-title">
     <div className="section__intro">
       <p className="section__kicker">About</p>
-      <h2 id="about-title">I turn learning into <em>working software.</em></h2>
+      <h2 id="about-title">I turn ideas into <em>working software.</em></h2>
     </div>
 
     <div className="about__body">
@@ -22,10 +22,10 @@ const About = () => (
           breaking it into understandable pieces and steadily turning it into a polished web experience.
         </p>
         <p>
-          This portfolio is part of that process: I revisited an early tutorial project, audited the
-          weaknesses and rebuilt it with stronger security, accessibility and engineering practices.
+          I care about accessible interactions, responsive layouts and maintainable components. I enjoy
+          working through practical problems and creating interfaces that are straightforward to use.
         </p>
-        <a href="#work">See the rebuild <HiArrowDown aria-hidden="true" /></a>
+        <a href="#work">Explore projects <HiArrowDown aria-hidden="true" /></a>
       </div>
 
       <div className="about__principles">
